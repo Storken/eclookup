@@ -14,6 +14,7 @@ import {
 } from 'next/dist/next-server/lib/utils'
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from '../styled-components/theme'
+import Head from 'next/head'
 
 const { Text } = Typography
 
@@ -32,20 +33,35 @@ type AppProps = {
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <Layout style={{ minHeight: '100vh', backgroundColor: '#333' }}>
-      <ThemeProvider theme={theme}>
-        <>
-          <Header />
-          <Content>
-            <Component {...pageProps} />
-          </Content>
-        </>
-        <Footer>
-          Made by Moonfarm{' '}
-          <StyledText copyable>0x314e5699db4756138107AE7d7EeDDf5708583ff5</StyledText>
-        </Footer>
-      </ThemeProvider>
-    </Layout>
+    <>
+      <Head>
+        {`<!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-VTF0DXXYJZ"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-VTF0DXXYJZ');
+          </script> `}
+      </Head>
+      <Layout style={{ minHeight: '100vh', backgroundColor: '#333' }}>
+        <ThemeProvider theme={theme}>
+          <>
+            <Header />
+            <Content>
+              <Component {...pageProps} />
+            </Content>
+          </>
+          <Footer>
+            Made by Moonfarm{' '}
+            <StyledText copyable>
+              0x314e5699db4756138107AE7d7EeDDf5708583ff5
+            </StyledText>
+          </Footer>
+        </ThemeProvider>
+      </Layout>
+    </>
   )
 }
 
