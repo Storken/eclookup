@@ -1,0 +1,13 @@
+{
+  "env": {
+    "testUser": {
+      "username": "m@m.se",
+      "password": "123123123"
+    },
+    "app": "http://localhost/app/",
+    "landingPage": "http://localhost/",
+    "apiV1": "http://localhost/api/v1/",
+    "publicApiV1": "http://api.localhost/public/api/v1/"
+  },
+  "video": false
+}
