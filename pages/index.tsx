@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>My Ether Cards</title>
+        <title>ECLookup</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

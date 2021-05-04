@@ -16,7 +16,7 @@ export const CardList = () => {
         (data: {
           latestBlock: string
           cards: { id: number; owner: string }[]
-        }) => setCards(data.cards.filter(card => card.owner === address))
+        }) => setCards(data.cards.filter(card => card.owner?.toLowerCase() === address?.toLowerCase()))
       )
   }, [address])
 
