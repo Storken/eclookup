@@ -7,7 +7,7 @@ const { Search } = Input
 
 const StyledInput = styled(Search)`
   margin-bottom: ${({ theme }) => theme.spacings.lg};
-  span {
+  & > span > span {
     background-color: ${({ theme }) => theme.colors.gray.dark};
     border-color: ${({ theme }) => theme.colors.gray.light};
   }
