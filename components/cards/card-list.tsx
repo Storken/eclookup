@@ -10,7 +10,7 @@ export const CardList = () => {
   >(undefined)
 
   useEffect(() => {
-    fetch('https://eclookup.xyz/assets/db.json')
+    fetch(window.location.origin+'/assets/db.json')
       .then(response => response.json())
       .then(
         (data: {

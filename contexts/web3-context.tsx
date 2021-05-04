@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 interface Web3ContextProps {
   address: string
@@ -13,9 +20,13 @@ export const Web3Context: React.Context<Web3ContextProps> = createContext<
 >({} as Web3ContextProps)
 
 export const Web3Provider = ({ children }: { children: ReactNode }) => {
-  const [address, setAddress] = useState(
-    '0x314e5699db4756138107AE7d7EeDDf5708583ff5'
-  )
+  const router = useRouter()
+  const [address, setAddress] = useState('')
+
+  useEffect(() => {
+    const paramAddress = router.query?.address ?? ''
+    setAddress(paramAddress.toString())
+  }, [router])
 
   const disconnect = () => {}
 
