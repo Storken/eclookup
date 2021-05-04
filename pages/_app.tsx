@@ -35,15 +35,21 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        {`<!-- Global site tag (gtag.js) - Google Analytics -->
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-VTF0DXXYJZ"></script>
-          <script>
+        <script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=G-VTF0DXXYJZ'
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'G-VTF0DXXYJZ');
-          </script> `}
+`
+          }}
+        ></script>
       </Head>
       <Layout style={{ minHeight: '100vh', backgroundColor: '#333' }}>
         <ThemeProvider theme={theme}>
