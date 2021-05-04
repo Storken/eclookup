@@ -70,11 +70,12 @@ export const createCards = async latestBlock => {
 export const syncCardOwnership = async latestBlock => {
   let currentBlock = latestBlock
   let blockNumber = await web3.eth.getBlockNumber()
+  let offset = 1000
   while (true) {
-    currentBlock % 1000 && console.log('currentBlock', currentBlock)
+    console.log('currentBlock', currentBlock)
     const changes = await etherCardsContract.getPastEvents('Transfer', {
       fromBlock: currentBlock.toString(),
-      toBlock: (currentBlock + 100).toString()
+      toBlock: (currentBlock + offset).toString()
     })
     if (changes.length > 0) {
       for (let i = 0; i < changes.length; i++) {
@@ -86,10 +87,12 @@ export const syncCardOwnership = async latestBlock => {
         console.log('updated card', id, 'to owner', owner)
       }
     }
-    currentBlock += 100
-    if (currentBlock > blockNumber) {
+    currentBlock += offset
+    if (currentBlock >= blockNumber) {
+      blockNumber = await web3.eth.getBlockNumber()
       currentBlock = blockNumber
-      await sleep(15)
+      offset = 10
+      await sleep(10*15*1000)
     }
     await sleep(100)
   }
