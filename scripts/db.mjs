@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { etherCardsContract, web3 } from './web3-provider.mjs'
-import { dbFile } from './config.mjs'
+import { dbFile } from './cli.mjs'
 
 export function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
