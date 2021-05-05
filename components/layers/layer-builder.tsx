@@ -49,7 +49,6 @@ const artistLayers = [
   'David Szabo',
   'Pixoloid',
   'Zsolt Kosa',
-  'Dirty Robot',
   'Agnes Szabo',
   'Edvin Avdagic',
   'Ordo Universe',
@@ -93,11 +92,11 @@ const LayerBuilder = () => {
           ...Object.fromEntries(layers.map((id, i) => [`layer${i}`, id]))
         }}
       >
-        {[4, 3, 2, 1, 0].map(index => (
+        {[0, 1, 2, 3, 4].map(index => (
           <Form.Item
             key={'form-item' + index}
             name={`layer${index}`}
-            label={`Layer ${5 - index}`}
+            label={`Layer ${index + 1}`}
           >
             <StyledSelect
               value={layers[index]}
