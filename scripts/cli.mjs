@@ -1,4 +1,4 @@
-import { dbFileProd, dbFileDev } from './config.mjs';
+import { dbFileProd, dbFileDev } from './config.mjs'
 import { createCards, syncCardOwnership, getLastBlock } from './db.mjs'
 import { etherCardsContract, wsWeb3 } from './web3-provider.mjs'
 

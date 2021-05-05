@@ -21,7 +21,5 @@ const StyledAntdContent = styled(AntdContent)`
 `
 
 export const Content = ({ children }: { children: ReactNode }) => (
-  <StyledAntdContent>
-    {children}
-  </StyledAntdContent>
+  <StyledAntdContent>{children}</StyledAntdContent>
 )

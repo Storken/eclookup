@@ -92,7 +92,7 @@ export const syncCardOwnership = async latestBlock => {
       blockNumber = await web3.eth.getBlockNumber()
       currentBlock = blockNumber
       offset = 10
-      await sleep(10*15*1000)
+      await sleep(10 * 15 * 1000)
     }
     await sleep(100)
   }

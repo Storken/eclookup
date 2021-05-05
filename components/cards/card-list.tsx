@@ -10,13 +10,18 @@ export const CardList = () => {
   >(undefined)
 
   useEffect(() => {
-    fetch(window.location.origin+'/assets/db.json')
+    fetch(window.location.origin + '/assets/db.json')
       .then(response => response.json())
       .then(
         (data: {
           latestBlock: string
           cards: { id: number; owner: string }[]
-        }) => setCards(data.cards.filter(card => card.owner?.toLowerCase() === address?.toLowerCase()))
+        }) =>
+          setCards(
+            data.cards.filter(
+              card => card.owner?.toLowerCase() === address?.toLowerCase()
+            )
+          )
       )
   }, [address])
 

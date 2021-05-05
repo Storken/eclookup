@@ -1,5 +1,5 @@
 import { Input } from 'antd'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useWeb3User from '../contexts/web3-context'
@@ -39,7 +39,7 @@ const WalletInput = () => {
     setLoading(true)
     setTimeout(() => {
       setAddress(value)
-      router.replace(window.location.origin+'?address='+value)
+      router.replace(window.location.origin + '?address=' + value)
       setLoading(false)
     }, 500)
   }

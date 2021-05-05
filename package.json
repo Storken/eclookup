@@ -4,18 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3011",
-    "dev-docker": "next dev -p 80",
     "build": "next build",
-    "start": "next start -p 3011",
-    "export": "next build && next export",
+    "deploy": "next build && next export && rm -rf ../html/* && cp ./out/* ../html/ && npx forever restartall",
     "format": "prettier-standard --format",
     "fix": "prettier-standard --fix",
     "lint": "prettier-standard --lint",
-    "test": "jest --silent",
-    "test:watch": "jest --watch --silent",
-    "test:coverage": "jest --coverage",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
     "sync-db": "node ./scripts/init.mjs"
   },
   "dependencies": {

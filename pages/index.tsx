@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Col, Row } from 'antd'
 import Cards from '../components/cards/cards'
 import { Web3Provider } from '../contexts/web3-context'
-import WalletInput from '../components/wallet-input';
+import WalletInput from '../components/wallet-input'
 
 const Home = () => {
   return (

@@ -48,7 +48,7 @@ const CardInfoContainer = styled.div`
 `
 
 const CardInfo = styled.div`
-  margin: 0 ${({theme}) => theme.spacings.md};
+  margin: 0 ${({ theme }) => theme.spacings.md};
 `
 
 const CardComponent = () => {

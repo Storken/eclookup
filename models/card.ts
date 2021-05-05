@@ -25,8 +25,8 @@ export interface RandomTraits {
 }
 
 export interface Trait {
-  name:        string;
-  description: string;
-  id:          number;
-  icon:        string;
+  name: string
+  description: string
+  id: number
+  icon: string
 }
