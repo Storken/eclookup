@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styled from 'styled-components'
 import useCardLayers from '../../contexts/layer-context'
 
@@ -23,8 +22,8 @@ const LayersOutput = () => {
     <>
       <ImagePlaceholder>
         {layerImageURLs.map(url => (
-          <StyledLayerOutput>
-            <Image key={url} width='290' height='400' src={url} />
+          <StyledLayerOutput key={url}>
+            <img key={url} width='290' height='400' src={url} />
           </StyledLayerOutput>
         ))}
       </ImagePlaceholder>
