@@ -8,8 +8,20 @@ const StyledTitle = styled(Title)`
   width: 100%;
 `
 
+const Images = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const StyledImage = styled(Image)`
   max-width: 200px;
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+`
+
+const StyledLayerThumbnail = styled(Image)`
+  max-width: 100px;
+  margin-left: ${({ theme }) => theme.spacings.md};
+  box-shadow: ${({ theme }) => theme.shadows.dark};
 `
 
 const CardContainer = styled.div`
@@ -47,16 +59,31 @@ const CardInfoContainer = styled.div`
   }
 `
 
+const LayerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const LayerInformation = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
 const CardInfo = styled.div`
   margin: 0 ${({ theme }) => theme.spacings.md};
 `
 
 const CardComponent = () => {
-  const { card, randomTraits } = useCardContext()
+  const { card, randomTraits, layerImages } = useCardContext()
   if (!card) return <></>
   return (
     <CardContainer key={card.id}>
-      <StyledImage src={card.image} />
+      <Images>
+        <StyledImage src={card.image} />
+        {card.image !== card.layer_image && (
+          <StyledImage src={card.layer_image} />
+        )}
+      </Images>
       <CardData>
         <StyledTitle level={5}>{card.title}</StyledTitle>
         <CardInfoContainer>
@@ -93,6 +120,16 @@ const CardComponent = () => {
             </Text>
           </CardInfo>
         </CardInfoContainer>
+        <LayerContent>
+          <Text>
+            <b>Accidental Collaboration layers: </b>
+          </Text>
+          <LayerInformation>
+            {layerImages?.map(layer => (
+              <StyledLayerThumbnail src={layer} />
+            ))}
+          </LayerInformation>
+        </LayerContent>
       </CardData>
     </CardContainer>
   )

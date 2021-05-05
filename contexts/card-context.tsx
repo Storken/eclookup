@@ -10,6 +10,7 @@ import { Card, RandomTraits } from '../models/card'
 interface CardContextProps {
   card: Card | undefined
   randomTraits: RandomTraits | undefined
+  layerImages: string[] | undefined
   loading: boolean
 }
 
@@ -27,6 +28,9 @@ export const CardProvider = ({
   const [loading, setLoading] = useState(false)
   const [card, setCard] = useState<Card | undefined>(undefined)
   const [randomTraits, setRandomTraits] = useState(undefined)
+  const [layerImages, setLayerImages] = useState<string[] | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     setLoading(true)
@@ -37,9 +41,28 @@ export const CardProvider = ({
 
   useEffect(() => {
     if (card && randomTraits) {
+      setLayerImages(getLayerImages(card.layer_image))
       setLoading(false)
     }
   }, [card, randomTraits])
+
+  const getLayerImages = (source: string) => {
+    const commonLayerURLBase = `${window.location.origin}/assets/layer_images/common_layers`
+    const artistLayerURLBase = `${window.location.origin}/assets/layer_images`
+    const images: string[] = []
+    const index = source.indexOf('.jpg')
+    const layers = source.slice(index-10, index);
+    for(let i = 0; i < 5; i++) {
+      const layerId = layers.slice(i*2, i*2+2)
+      if (layerId.startsWith('0')) {
+        images.push(`${commonLayerURLBase}/${i+1}/${layerId}.png`)
+      } else {
+        images.push(`${artistLayerURLBase}/${layerId}.png`)
+      }
+    }
+
+    return images;
+  }
 
   const getMetaData = async (uri: string) => {
     return fetch(uri)
@@ -92,7 +115,8 @@ export const CardProvider = ({
       value={{
         loading,
         card,
-        randomTraits
+        randomTraits,
+        layerImages
       }}
     >
       {children}

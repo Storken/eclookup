@@ -7,7 +7,7 @@ const { Content: AntdContent } = Layout
 const StyledAntdContent = styled(AntdContent)`
   margin: ${({ theme }) => `${theme.spacings.lg} ${theme.spacings.md}`};
   padding: ${({ theme }) => `${theme.spacings.lg} ${theme.spacings.md}`};
-  background-color: black;
+  background-color: ${({theme}) => theme.colors.black};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: ${({ theme }) => theme.spacings.lg};
