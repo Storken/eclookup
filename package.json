@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3011",
     "build": "next build",
-    "deploy": "next build && next export && rm -rf ../html/* && cp ./out/* ../html/ && npx forever restartall",
+    "deploy": "next build && next export && rm -rf ../html/* && cp -r ./out/* ../html/ && npx forever restartall",
     "format": "prettier-standard --format",
     "fix": "prettier-standard --fix",
     "lint": "prettier-standard --lint",
