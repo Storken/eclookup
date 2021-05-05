@@ -125,9 +125,11 @@ const CardComponent = () => {
             <b>Accidental Collaboration layers: </b>
           </Text>
           <LayerInformation>
-            {layerImages?.map(layer => (
-              <StyledLayerThumbnail src={layer} />
-            ))}
+            <Image.PreviewGroup>
+              {layerImages?.map(layer => (
+                <StyledLayerThumbnail src={layer} />
+              ))}
+            </Image.PreviewGroup>
           </LayerInformation>
         </LayerContent>
       </CardData>
