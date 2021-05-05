@@ -30,9 +30,10 @@ export const CardProvider = ({
 
   useEffect(() => {
     setLoading(true)
+    id = Number.parseInt(id.toString())
     getMetaData(getMetaDataURI(id))
     getData(id)
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (card && randomTraits) {
