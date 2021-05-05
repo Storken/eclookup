@@ -15,7 +15,10 @@ const Home = () => {
 
       <>
         <Row>
-          <Col xs={{ span: 24, offset: 0 }} lg={{ span: 12, offset: 6 }}>
+          <Col
+            xs={{ span: 24, offset: 0 }}
+            xl={{ span: 18, offset: 3 }}
+          >
             <Web3Provider>
               <WalletInput />
               <Cards />

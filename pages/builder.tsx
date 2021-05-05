@@ -18,7 +18,7 @@ const Builder = () => {
       <>
         <LayersProvider>
           <Row>
-            <Col xs={{ span: 24, offset: 0 }} lg={{ span: 12, offset: 6 }}>
+            <Col xs={{ span: 24, offset: 0 }} lg={{ span: 18, offset: 3 }} xl={{ span: 12, offset: 6 }}>
               <Title>Accidental Collaboration builder</Title>
               <LayerBuilder />
             </Col>

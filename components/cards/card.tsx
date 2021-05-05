@@ -20,7 +20,7 @@ const StyledImage = styled(Image)`
 
 const StyledLayerThumbnail = styled(Image)`
   max-width: 100px;
-  margin-left: ${({ theme }) => theme.spacings.md};
+  margin: ${({ theme }) => theme.spacings.sm};
   box-shadow: ${({ theme }) => theme.shadows.dark};
 `
 
