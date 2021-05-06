@@ -46,8 +46,8 @@ export const getLayerImageURLs = (ids: string[]) => {
 }
 
 export const getLayerImageURL = (id: string, index: number) => {
-  const commonLayerURLBase = `${window.location.origin}/assets/layer_images/common_layers`
-  const artistLayerURLBase = `${window.location.origin}/assets/layer_images`
+  const commonLayerURLBase = `https://eclookup.xyz/assets/layer_images/common_layers`
+  const artistLayerURLBase = `https://eclookup.xyz/assets/layer_images`
   if (id.startsWith('0'))
   return `${commonLayerURLBase}/${index}/${id}.png`
   
