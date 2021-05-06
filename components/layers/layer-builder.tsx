@@ -1,6 +1,7 @@
 import { Form, Select } from 'antd'
 import styled from 'styled-components'
 import useCardLayers from '../../contexts/layer-context'
+import { artistLayerNames, commonsPerLayer } from '../../utils/layer-helper';
 import LayersOutput from './layers-output'
 
 const LayersOutputContainer = styled.div`
@@ -32,29 +33,6 @@ const StyledSelect = styled(Select)`
 
 const { Option } = StyledSelect
 
-const commonLayers = {
-  '0': 14,
-  '1': 3,
-  '2': 8,
-  '3': 2,
-  '4': 8
-}
-
-const artistLayers = [
-  'Zsuzsanna Tasi',
-  'Laszlo Ujvarosi',
-  'Mihaly Szemeti',
-  'Georgo Kovacs',
-  'Eskalexia Baws',
-  'David Szabo',
-  'Pixoloid',
-  'Zsolt Kosa',
-  'Agnes Szabo',
-  'Edvin Avdagic',
-  'Ordo Universe',
-  'Dirty Robot',
-  'Vizie'
-]
 
 const LayerBuilder = () => {
   const { layers, updateLayer } = useCardLayers()
@@ -63,17 +41,17 @@ const LayerBuilder = () => {
     const commonLayerIds = []
     const artistLayerIds = []
     //@ts-ignore
-    for (let i = 0; i < commonLayers[layerIndex.toString()]; i++) {
+    for (let i = 0; i < commonsPerLayer[layerIndex.toString()]; i++) {
       commonLayerIds.push({
         id: `0${(i + 1).toString(16)}`,
         name: `common ${i}`
       })
     }
-    for (let i = 0; i < artistLayers.length; i++) {
-      if (artistLayers[i] !== '') {
+    for (let i = 0; i < artistLayerNames.length; i++) {
+      if (artistLayerNames[i] !== '') {
         artistLayerIds.push({
           id: `${(i + 1).toString(16)}${layerIndex + 1}`,
-          name: artistLayers[i]
+          name: artistLayerNames[i]
         })
       }
     }

@@ -6,12 +6,13 @@ import {
   useEffect,
   useState
 } from 'react'
-import { getLayerImageURLs } from '../utils/layer-helper'
+import { getLayerArtistNames, getLayerImageURLs } from '../utils/layer-helper'
 
 interface LayersContextProps {
   layerImageURLs: string[]
   layers: string[]
   updateLayer: (index: number, layer: string) => void
+  layerArtists: string[],
 }
 
 export const LayersContext: React.Context<LayersContextProps> = createContext<
@@ -22,6 +23,7 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const [layers, setLayers] = useState(['04', 'd2', '07', '14', '02'])
   const [layerImageURLs, setLayerImageURLs] = useState<string[]>([])
+  const [layerArtists, setLayerArtists] = useState(['Common 3', 'Vizie', 'Common 6', 'Zsuzsanna Tasi', 'Common 1'])
 
   const updateLayer = (index: number, layer: string) => {
     const newLayers = [...layers]
@@ -34,6 +36,7 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     setLayerImageURLs(getLayerImageURLs(layers))
+    setLayerArtists(getLayerArtistNames(layers))
   }, [layers])
 
   useEffect(() => {
@@ -53,6 +56,7 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
       value={{
         layerImageURLs,
         layers,
+        layerArtists,
         updateLayer
       }}
     >

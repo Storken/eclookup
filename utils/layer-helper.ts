@@ -1,3 +1,27 @@
+export const commonsPerLayer = {
+  '0': 14,
+  '1': 3,
+  '2': 8,
+  '3': 2,
+  '4': 8
+}
+
+export const artistLayerNames = [
+  'Zsuzsanna Tasi',
+  'Laszlo Ujvarosi',
+  'Mihaly Szemeti',
+  'Georgo Kovacs',
+  'Eskalexia Baws',
+  'David Szabo',
+  'Pixoloid',
+  'Zsolt Kosa',
+  'Agnes Szabo',
+  'Edvin Avdagic',
+  'Ordo Universe',
+  'Dirty Robot',
+  'Vizie'
+]
+
 export const getLayerImageURLs = (ids: string[]) => {
   const commonLayerURLBase = `${window.location.origin}/assets/layer_images/common_layers`
   const artistLayerURLBase = `${window.location.origin}/assets/layer_images`
@@ -11,7 +35,7 @@ export const getLayerImageURLs = (ids: string[]) => {
         const firstLayerId = layerId.slice(0, 1)
         const secondLayerId = layerId.slice(1, 2)
         let firstNumber = Number.parseInt(firstLayerId, 16)
-        firstNumber++;
+        firstNumber++
         layerId = firstNumber.toString(16) + secondLayerId
       }
       images.push(`${artistLayerURLBase}/${layerId}.png`)
@@ -19,4 +43,19 @@ export const getLayerImageURLs = (ids: string[]) => {
   }
 
   return images
+}
+
+export const getLayerArtistNames = (ids: string[]) => {
+  const layerNames = []
+  for (let i = 0; i < 5; i++) {
+    const id = ids[i]
+    if (id.startsWith('0')) {
+      layerNames.push(`Common ${id.slice(1, 2)}`)
+    } else {
+      const artistIndex = Number.parseInt(id.slice(0, 1), 16)
+      layerNames.push(artistLayerNames[artistIndex])
+    }
+  }
+
+  return layerNames
 }

@@ -73,6 +73,12 @@ const CardInfo = styled.div`
   margin: 0 ${({ theme }) => theme.spacings.md};
 `
 
+const ThumbnailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 const CardComponent = () => {
   const { card, randomTraits, layerImages } = useCardContext()
   if (!card) return <></>
@@ -99,6 +105,14 @@ const CardComponent = () => {
               {card.attributes.map(attribute => attribute.value)}
             </p>
           </CardInfo>
+          {card.artist !== 'various' && (
+            <CardInfo>
+              <p>
+                <b>Artist: </b>
+                {card.artist}
+              </p>
+            </CardInfo>
+          )}
           <CardInfo>
             <Text>
               <b>Random traits: </b>
@@ -126,8 +140,11 @@ const CardComponent = () => {
           </Text>
           <LayerInformation>
             <Image.PreviewGroup>
-              {layerImages?.map(layer => (
-                <StyledLayerThumbnail src={layer} />
+              {layerImages?.map((layer, i) => (
+                <ThumbnailContainer>
+                  <StyledLayerThumbnail src={layer} />
+                  <Text>{card.layer_artists[i]}</Text>
+                </ThumbnailContainer>
               ))}
             </Image.PreviewGroup>
           </LayerInformation>
