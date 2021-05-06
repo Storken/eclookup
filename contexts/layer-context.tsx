@@ -4,6 +4,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState
 } from 'react'
 import { getLayerArtistNames, getLayerImageURLs } from '../utils/layer-helper'
@@ -12,7 +13,8 @@ interface LayersContextProps {
   layerImageURLs: string[]
   layers: string[]
   updateLayer: (index: number, layer: string) => void
-  layerArtists: string[],
+  layerArtists: string[]
+  loading: boolean
 }
 
 export const LayersContext: React.Context<LayersContextProps> = createContext<
@@ -21,9 +23,28 @@ export const LayersContext: React.Context<LayersContextProps> = createContext<
 
 export const LayersProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [layers, setLayers] = useState(['04', 'd2', '07', '14', '02'])
   const [layerImageURLs, setLayerImageURLs] = useState<string[]>([])
-  const [layerArtists, setLayerArtists] = useState(['Common 3', 'Vizie', 'Common 6', 'Zsuzsanna Tasi', 'Common 1'])
+  const [layerArtists, setLayerArtists] = useState([
+    'Common 3',
+    'Vizie',
+    'Common 6',
+    'Zsuzsanna Tasi',
+    'Common 1'
+  ])
+
+  const paramLayers = useMemo(() => {
+    const paramLayers = router.query?.layers
+    if (!paramLayers) return undefined
+    const initialLayers = []
+    if (!Array.isArray(paramLayers) && paramLayers?.length === 10) {
+      for (let i = 0; i < 5; i++) {
+        initialLayers.push(paramLayers.slice(i * 2, i * 2 + 2))
+      }
+    }
+    return initialLayers
+  }, [router])
 
   const updateLayer = (index: number, layer: string) => {
     const newLayers = [...layers]
@@ -40,16 +61,14 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
   }, [layers])
 
   useEffect(() => {
-    const paramLayers = router.query?.layers
-    const initialLayers = []
-    if (!Array.isArray(paramLayers) && paramLayers?.length === 10) {
-      for (let i = 0; i < 5; i++) {
-        initialLayers.push(paramLayers.slice(i * 2, i * 2 + 2))
-      }
-      setLayers(initialLayers)
-      setLayerImageURLs(getLayerImageURLs(initialLayers))
+    if (paramLayers) {
+      setLoading(true)
+      setLayers(paramLayers)
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
     }
-  }, [router])
+  }, [paramLayers])
 
   return (
     <LayersContext.Provider
@@ -57,6 +76,7 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
         layerImageURLs,
         layers,
         layerArtists,
+        loading,
         updateLayer
       }}
     >
