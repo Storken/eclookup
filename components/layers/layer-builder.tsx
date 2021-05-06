@@ -24,6 +24,7 @@ const SpinContainer = styled.div`
 
 const StyledForm = styled(Form)`
   width: 100%;
+  max-width: 400px;
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin-left: ${({ theme }) => theme.spacings.md};
   }
@@ -32,7 +33,6 @@ const StyledForm = styled(Form)`
 const LayersOutputWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
 `
 
 const StyledSelect = styled(Select)`

@@ -28,7 +28,7 @@ export const CardList = () => {
   return (
     <>
       {cards?.map(card => (
-        <CardProvider id={card.id}>
+        <CardProvider key={card.id} id={card.id}>
           <CardComponent />
         </CardProvider>
       ))}

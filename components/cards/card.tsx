@@ -1,6 +1,9 @@
 import { Image, Typography } from 'antd'
+import Link from 'next/link'
 import styled from 'styled-components'
 import useCardContext from '../../contexts/card-context'
+import { ExternalLinkIcon } from '../../icons/external-link'
+import { getLayerIdsFromURLs } from '../../utils/layer-helper'
 
 const { Title, Text } = Typography
 
@@ -11,6 +14,10 @@ const StyledTitle = styled(Title)`
 const Images = styled.div`
   display: flex;
   flex-direction: column;
+`
+
+const StyledA = styled.a`
+  margin-left: ${({ theme }) => theme.spacings.xs};
 `
 
 const StyledImage = styled(Image)`
@@ -81,6 +88,7 @@ const ThumbnailContainer = styled.div`
 
 const CardComponent = () => {
   const { card, randomTraits, layerImages } = useCardContext()
+
   if (!card) return <></>
   return (
     <CardContainer key={card.id}>
@@ -136,12 +144,26 @@ const CardComponent = () => {
         </CardInfoContainer>
         <LayerContent>
           <Text>
-            <b>Accidental Collaboration layers: </b>
+            <b>Accidental Collaboration layers |</b>
+            <Link
+              href={{
+                pathname: '/builder',
+                query: {
+                  layers: `${getLayerIdsFromURLs(layerImages ?? [])?.join('')}`
+                }
+              }}
+              passHref
+            >
+              <StyledA target='_blank'>
+                Builder
+                <ExternalLinkIcon />
+              </StyledA>
+            </Link>
           </Text>
           <LayerInformation>
             <Image.PreviewGroup>
               {layerImages?.map((layer, i) => (
-                <ThumbnailContainer>
+                <ThumbnailContainer key={layer}>
                   <StyledLayerThumbnail src={layer} />
                   <Text>{card.layer_artists[i]}</Text>
                 </ThumbnailContainer>

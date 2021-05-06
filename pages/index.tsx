@@ -1,9 +1,11 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { Col, Row } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import Cards from '../components/cards/cards'
 import { Web3Provider } from '../contexts/web3-context'
 import WalletInput from '../components/wallet-input'
+
+const { Title } = Typography
 
 const Home = () => {
   return (
@@ -15,10 +17,8 @@ const Home = () => {
 
       <>
         <Row>
-          <Col
-            xs={{ span: 24, offset: 0 }}
-            xl={{ span: 18, offset: 3 }}
-          >
+          <Col xs={{ span: 24, offset: 0 }} xl={{ span: 18, offset: 3 }}>
+            <Title>Ether Cards Lookup</Title>
             <Web3Provider>
               <WalletInput />
               <Cards />

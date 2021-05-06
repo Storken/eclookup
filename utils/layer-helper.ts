@@ -59,3 +59,16 @@ export const getLayerArtistNames = (ids: string[]) => {
 
   return layerNames
 }
+
+export const getLayerIdsFromURLs = (urls: string[]) => {
+  return urls.map(url => {
+    const idIndex = url.indexOf('.png')
+    const id = url.slice(idIndex - 2, idIndex)
+    let artist = Number.parseInt(id.slice(0, 1), 16)
+    const layer = id.slice(1, 2)
+    if (artist > 6) {
+      artist -= 1
+    }
+    return artist.toString(16) + layer
+  })
+}
