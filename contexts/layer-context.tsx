@@ -24,6 +24,7 @@ export const LayersContext: React.Context<LayersContextProps> = createContext<
 export const LayersProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [initialLoad, setInitialLoad] = useState(true)
   const [layers, setLayers] = useState(['04', 'd2', '07', '14', '02'])
   const [layerImageURLs, setLayerImageURLs] = useState<string[]>([])
   const [layerArtists, setLayerArtists] = useState([
@@ -61,12 +62,13 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
   }, [layers])
 
   useEffect(() => {
-    if (paramLayers) {
+    if (paramLayers && initialLoad) {
+      setInitialLoad(false)
       setLoading(true)
       setLayers(paramLayers)
       setTimeout(() => {
         setLoading(false)
-      }, 500)
+      }, 300)
     }
   }, [paramLayers])
 

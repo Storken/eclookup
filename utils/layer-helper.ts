@@ -45,6 +45,23 @@ export const getLayerImageURLs = (ids: string[]) => {
   return images
 }
 
+export const getLayerImageURL = (id: string, index: number) => {
+  const commonLayerURLBase = `${window.location.origin}/assets/layer_images/common_layers`
+  const artistLayerURLBase = `${window.location.origin}/assets/layer_images`
+  if (id.startsWith('0'))
+  return `${commonLayerURLBase}/${index}/${id}.png`
+  
+  let layerId = id
+  if (Number.parseInt(layerId.slice(0, 1), 16) > 6) {
+    const firstLayerId = layerId.slice(0, 1)
+    const secondLayerId = layerId.slice(1, 2)
+    let firstNumber = Number.parseInt(firstLayerId, 16)
+    firstNumber++
+    layerId = firstNumber.toString(16) + secondLayerId
+  }
+  return `${artistLayerURLBase}/${layerId}.png`
+}
+
 export const getLayerArtistNames = (ids: string[]) => {
   const layerNames = []
   for (let i = 0; i < 5; i++) {
