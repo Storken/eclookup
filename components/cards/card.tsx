@@ -22,13 +22,16 @@ const StyledA = styled.a`
 
 const StyledImage = styled(Image)`
   max-width: 200px;
-  margin-bottom: ${({ theme }) => theme.spacings.md};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  margin: ${({ theme }) => theme.spacings.md};
 `
 
 const StyledLayerThumbnail = styled(Image)`
   max-width: 100px;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   margin: ${({ theme }) => theme.spacings.sm};
   box-shadow: ${({ theme }) => theme.shadows.dark};
+  background-color: rgba(255,255,255,0.3);
 `
 
 const CardContainer = styled.div`

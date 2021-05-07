@@ -16,6 +16,10 @@ const Container = styled.div`
   width: 100px;
 `
 
+const StyledImg = styled.img`
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+`
+
 const Overlay = styled.div<{ selected: boolean }>`
   position: absolute;
   top: 0;
@@ -27,6 +31,7 @@ const Overlay = styled.div<{ selected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   ${({ selected }) =>
     selected
       ? `
@@ -65,7 +70,7 @@ const SelectableImageLayer = ({
       <Overlay selected={isSelected}>
         <Text>{isSelected ? 'Selected' : 'Select layer'}</Text>
       </Overlay>
-      <img src={imageURL} height='138' width='100' />
+      <StyledImg src={imageURL} height='138' width='100' />
       <Text>{name}</Text>
     </Container>
   )
