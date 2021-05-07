@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3011",
     "build": "next build",
-    "deploy": "git pull && next build && next export && rm -rf ../html/* && cp -r ./out/* ../html/ && npx forever restartall",
+    "export": "next build && next export",
+    "deploy": "git pull && yarn export && rm -rf ../html/* && cp -r ./out/* ../html/ && npx forever restartall",
     "format": "prettier-standard --format",
     "fix": "prettier-standard --fix",
     "lint": "prettier-standard --lint",
@@ -15,7 +16,6 @@
     "@ant-design/icons": "^4.2.2",
     "@zeit/next-less": "^1.0.1",
     "antd": "^4.6.4",
-    "http-server": "^0.12.3",
     "http-status-codes": "^2.1.4",
     "less": "^3.12.2",
     "next": "^10.0.6",
@@ -28,7 +28,6 @@
     "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.14.2",
-    "babel-jest": "^26.3.0",
     "babel-plugin-inline-react-svg": "^1.1.2",
     "babel-plugin-styled-components": "^1.11.1",
     "prettier-standard": "^16.4.1",
@@ -47,8 +46,8 @@
       "@typescript-eslint/no-unused-vars": "error"
     },
     "ignorePatterns": [
-      "**/__tests__/",
-      "**/tests/"
+      "node_modules/",
+      "out"
     ]
   }
 }
