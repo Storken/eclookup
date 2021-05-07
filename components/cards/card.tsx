@@ -65,7 +65,7 @@ const CardInfoContainer = styled.div`
     max-height: 400px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    max-height: 300px;
+    max-height: 200px;
   }
 `
 
