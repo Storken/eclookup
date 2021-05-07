@@ -1,4 +1,6 @@
-import { Form, Select, Spin } from 'antd'
+import { Form, Select } from 'antd'
+import { useForm } from 'antd/lib/form/Form'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import useCardLayers from '../../contexts/layer-context'
 import { artistLayerNames, commonsPerLayer } from '../../utils/layer-helper'
@@ -12,14 +14,6 @@ const LayersOutputContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: row;
   }
-`
-
-const SpinContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: ${({ theme }) => theme.spacings.xl};
 `
 
 const StyledForm = styled(Form)`
@@ -42,8 +36,8 @@ const StyledSelect = styled(Select)`
 const { Option } = StyledSelect
 
 const LayerBuilder = () => {
-  const { layers, updateLayer, loading } = useCardLayers()
-
+  const { layers, updateLayer } = useCardLayers()
+  const [form] = useForm()
   const getLayerIds = (layerIndex: number) => {
     const commonLayerIds = []
     const artistLayerIds = []
@@ -51,7 +45,7 @@ const LayerBuilder = () => {
     for (let i = 0; i < commonsPerLayer[layerIndex.toString()]; i++) {
       commonLayerIds.push({
         id: `0${(i + 1).toString(16)}`,
-        name: `common ${i}`
+        name: `Common ${i + 1}`
       })
     }
     for (let i = 0; i < artistLayerNames.length; i++) {
@@ -65,47 +59,46 @@ const LayerBuilder = () => {
     return artistLayerIds.concat(commonLayerIds)
   }
 
+  useEffect(() => {
+    const formValues = []
+    for (let i = 0; i < 5; i++) {
+      formValues.push(['layer' + i, layers[i]])
+    }
+    form.setFieldsValue(Object.fromEntries(formValues))
+  }, [layers])
+
   return (
     <LayersOutputContainer>
-      {loading ? (
-        <SpinContainer>
-          <Spin />
-        </SpinContainer>
-      ) : (
-        <>
-          <LayersOutputWrapper>
-            <LayersOutput />
-          </LayersOutputWrapper>
-          <StyledForm
-            name='selectLayers'
-            layout='vertical'
-            initialValues={{
-              ...Object.fromEntries(layers.map((id, i) => [`layer${i}`, id]))
-            }}
+      <LayersOutputWrapper>
+        <LayersOutput />
+      </LayersOutputWrapper>
+      <StyledForm
+        form={form}
+        name='selectLayers'
+        layout='vertical'
+        initialValues={Object.fromEntries(
+          layers.map((id, i) => [`layer${i}`, id])
+        )}
+      >
+        {[0, 1, 2, 3, 4].map(index => (
+          <Form.Item
+            key={'form-item' + index}
+            name={`layer${index}`}
+            label={`Layer ${index + 1}`}
           >
-            {[0, 1, 2, 3, 4].map(index => (
-              <Form.Item
-                key={'form-item' + index}
-                name={`layer${index}`}
-                label={`Layer ${index + 1}`}
-              >
-                <StyledSelect
-                  value={layers[index]}
-                  onChange={value =>
-                    updateLayer(index, value?.toString() ?? '01')
-                  }
-                >
-                  {getLayerIds(index).map(({ id, name }) => (
-                    <Option key={id} style={{ color: 'black' }} value={id}>
-                      {name}
-                    </Option>
-                  ))}
-                </StyledSelect>
-              </Form.Item>
-            ))}
-          </StyledForm>
-        </>
-      )}
+            <StyledSelect
+              value={layers[index]}
+              onChange={value => updateLayer(index, value?.toString() ?? '01')}
+            >
+              {getLayerIds(index).map(({ id, name }) => (
+                <Option key={id} style={{ color: 'black' }} value={id}>
+                  {name}
+                </Option>
+              ))}
+            </StyledSelect>
+          </Form.Item>
+        ))}
+      </StyledForm>
     </LayersOutputContainer>
   )
 }

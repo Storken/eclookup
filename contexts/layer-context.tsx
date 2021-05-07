@@ -14,7 +14,6 @@ interface LayersContextProps {
   layers: string[]
   updateLayer: (index: number, layer: string) => void
   layerArtists: string[]
-  loading: boolean
 }
 
 export const LayersContext: React.Context<LayersContextProps> = createContext<
@@ -23,8 +22,6 @@ export const LayersContext: React.Context<LayersContextProps> = createContext<
 
 export const LayersProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-  const [initialLoad, setInitialLoad] = useState(true)
   const [layers, setLayers] = useState(['04', 'd2', '07', '14', '02'])
   const [layerImageURLs, setLayerImageURLs] = useState<string[]>([])
   const [layerArtists, setLayerArtists] = useState([
@@ -62,13 +59,8 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
   }, [layers])
 
   useEffect(() => {
-    if (paramLayers && initialLoad) {
-      setInitialLoad(false)
-      setLoading(true)
+    if (paramLayers) {
       setLayers(paramLayers)
-      setTimeout(() => {
-        setLoading(false)
-      }, 300)
     }
   }, [paramLayers])
 
@@ -78,7 +70,6 @@ export const LayersProvider = ({ children }: { children: ReactNode }) => {
         layerImageURLs,
         layers,
         layerArtists,
-        loading,
         updateLayer
       }}
     >

@@ -20,7 +20,7 @@ const LayersOverview = () => {
   return (
     <LayersOverviewContainer>
       {Object.keys(commonsPerLayer).map((key, i) => (
-        <Collapse defaultActiveKey={[key]} ghost>
+        <Collapse ghost key={'collapse-' + key}>
           <Panel header={<Title level={4}>Layer {i + 1}</Title>} key={key}>
             <ImageFlexContainer>
               {artistLayerNames.map((name, index) => {
@@ -28,6 +28,7 @@ const LayersOverview = () => {
                   <SelectableImageLayer
                     name={name}
                     layerIndex={i}
+                    key={`${(index + 1).toString(16)}${i + 1}`}
                     layerId={`${(index + 1).toString(16)}${i + 1}`}
                   />
                 )
@@ -40,6 +41,7 @@ const LayersOverview = () => {
                     <SelectableImageLayer
                       name={'Common ' + (index + 1)}
                       layerIndex={i}
+                      key={`0${(index + 1).toString(16)}${i}`}
                       layerId={`0${(index + 1).toString(16)}`}
                     />
                   )
