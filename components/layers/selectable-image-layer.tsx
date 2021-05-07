@@ -18,6 +18,7 @@ const Container = styled.div`
 
 const StyledImg = styled.img`
   border-radius: ${({ theme }) => theme.borderRadius.lg};
+  background-color: ${({theme}) => theme.colors.gray.medium};
 `
 
 const Overlay = styled.div<{ selected: boolean }>`
