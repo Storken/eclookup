@@ -72,6 +72,12 @@ const CardInfoContainer = styled.div`
 const LayerContent = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: ${({ theme }) => theme.spacings.md};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 0;
+    margin-left: ${({ theme }) => theme.spacings.md};
+  }
 `
 
 const LayerInformation = styled.div`
@@ -138,9 +144,16 @@ const CardComponent = () => {
             <Text>
               <b>Limited traits: </b>
               <ul>
-                {card.traits.filter(trait => !randomTraits?.traits.some(rTrait => rTrait === trait.name)).map((trait, index) => (
-                  <li key={trait.id + '-' + index}>{trait.name}</li>
-                ))}
+                {card.traits
+                  .filter(
+                    trait =>
+                      !randomTraits?.traits.some(
+                        rTrait => rTrait === trait.name
+                      )
+                  )
+                  .map((trait, index) => (
+                    <li key={trait.id + '-' + index}>{trait.name}</li>
+                  ))}
               </ul>
             </Text>
           </CardInfo>
