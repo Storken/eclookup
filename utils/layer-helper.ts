@@ -68,12 +68,20 @@ export const getLayerArtistNames = (ids: string[]) => {
     if (id.startsWith('0')) {
       layerNames.push(`Common ${id.slice(1, 2)}`)
     } else {
-      const artistIndex = Number.parseInt(id.slice(0, 1), 16)
+      let artistIndex = Number.parseInt(id.slice(0, 1), 16) - 1
       layerNames.push(artistLayerNames[artistIndex])
     }
   }
 
   return layerNames
+}
+
+export const getLayerArtist = (id: string) => {
+  if (id.startsWith('0')) {
+    return `Common ${id.slice(1, 2)}`
+  }
+  let artistIndex = Number.parseInt(id.slice(0, 1), 16) - 1
+  return artistLayerNames[artistIndex]
 }
 
 export const getLayerIdsFromURLs = (urls: string[]) => {

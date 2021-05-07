@@ -65,7 +65,7 @@ const CardInfoContainer = styled.div`
     max-height: 400px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    max-height: 200px;
+    max-height: 300px;
   }
 `
 
@@ -138,7 +138,7 @@ const CardComponent = () => {
             <Text>
               <b>Limited traits: </b>
               <ul>
-                {card.traits.map((trait, index) => (
+                {card.traits.filter(trait => !randomTraits?.traits.some(rTrait => rTrait === trait.name)).map((trait, index) => (
                   <li key={trait.id + '-' + index}>{trait.name}</li>
                 ))}
               </ul>
