@@ -51,17 +51,17 @@ export const CardProvider = ({
     const artistLayerURLBase = `${window.location.origin}/assets/layer_images`
     const images: string[] = []
     const index = source.indexOf('.jpg')
-    const layers = source.slice(index-10, index);
-    for(let i = 0; i < 5; i++) {
-      const layerId = layers.slice(i*2, i*2+2)
+    const layers = source.slice(index - 10, index)
+    for (let i = 0; i < 5; i++) {
+      const layerId = layers.slice(i * 2, i * 2 + 2)
       if (layerId.startsWith('0')) {
-        images.push(`${commonLayerURLBase}/${i+1}/${layerId}.png`)
+        images.push(`${commonLayerURLBase}/${i + 1}/${layerId}.png`)
       } else {
         images.push(`${artistLayerURLBase}/${layerId}.png`)
       }
     }
 
-    return images;
+    return images
   }
 
   const getMetaData = async (uri: string) => {

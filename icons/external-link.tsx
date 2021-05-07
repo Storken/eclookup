@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const StyledExternalLinkIcon = styled.div`
-  margin-left: ${({theme}) => theme.spacings.xs};
+  margin-left: ${({ theme }) => theme.spacings.xs};
   display: inline-flex;
   justify-content: center;
   align-items: center;

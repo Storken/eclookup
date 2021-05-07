@@ -15,7 +15,7 @@ const ImagePlaceholder = styled.div`
   width: 290px;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   overflow: hidden;
-  border: ${({theme}) => theme.borders.light};
+  border: ${({ theme }) => theme.borders.light};
 `
 
 const LayersOutput = () => {

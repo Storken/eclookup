@@ -31,7 +31,7 @@ const StyledLayerThumbnail = styled(Image)`
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   margin: ${({ theme }) => theme.spacings.sm};
   box-shadow: ${({ theme }) => theme.shadows.dark};
-  background-color: ${({theme}) => theme.colors.gray.medium};
+  background-color: ${({ theme }) => theme.colors.gray.medium};
 `
 
 const CardContainer = styled.div`

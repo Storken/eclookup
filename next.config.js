@@ -6,6 +6,6 @@ module.exports = withLess({
     javascriptEnabled: true
   },
   images: {
-    domains: ['localhost', 'eclookup.xyz'],
-  },
+    domains: ['localhost', 'eclookup.xyz']
+  }
 })

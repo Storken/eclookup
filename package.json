@@ -46,7 +46,7 @@
       "@typescript-eslint/no-unused-vars": "error"
     },
     "ignorePatterns": [
-      "node_modules/",
+      "node_modules",
       "out"
     ]
   }
