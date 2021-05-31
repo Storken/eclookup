@@ -171,7 +171,7 @@ const CardComponent = () => {
               }}
               passHref
             >
-              <StyledA target='_blank'>
+              <StyledA>
                 Builder
                 <ExternalLinkIcon />
               </StyledA>
