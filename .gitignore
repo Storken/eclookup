@@ -39,5 +39,5 @@ yarn-error.log*
 # vscode
 /.vscode
 
-# scripts are in separate repo
+# scripts with sensitive info are in separate repo
 /scripts
