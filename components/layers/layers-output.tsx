@@ -33,7 +33,7 @@ const LayersOutput = () => {
       <ImagePlaceholder>
         {layerImageURLs.map((url, index) => (
           <StyledLayerOutput key={url}>
-            <StyledImg zoom={index === 0 && layerArtists[index] === 'Vizie'} key={url} src={url} />
+            <StyledImg zoom={layerArtists[index] === 'Vizie'} key={url} src={url} />
           </StyledLayerOutput>
         ))}
       </ImagePlaceholder>
