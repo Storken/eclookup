@@ -1,12 +1,22 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { Col, Row } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import { Web3Provider } from '../contexts/web3-context'
 import { CardList } from '../components/cards/card-list'
-import styled from 'styled-components';
+import styled from 'styled-components'
+
+const { Text } = Typography
+
+const Info = styled.div`
+  margin: ${({ theme }) => theme.spacings.md} 0;
+`
+
+const StyledText = styled(Text)`
+  overflow-wrap: break-word;
+`
 
 const Container = styled.div`
-    background-color: #18191b;
+  background-color: #18191b;
 `
 
 const Home = () => {
@@ -25,6 +35,14 @@ const Home = () => {
             >
               <CardList />
             </Web3Provider>
+          </Col>
+          <Col xs={{ span: 24, offset: 0 }} xl={{ span: 18, offset: 3 }}>
+            <Info>
+              Made in collaboration with Moonfarm{' '}
+              <StyledText copyable>
+                0x314e5699db4756138107AE7d7EeDDf5708583ff5
+              </StyledText>
+            </Info>
           </Col>
         </Row>
       </Container>
