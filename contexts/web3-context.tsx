@@ -15,16 +15,21 @@ interface Web3ContextProps {
   isConnected: boolean
 }
 
+interface Web3ProviderProps {
+  children: ReactNode
+  initialAddress?: string
+}
+
 export const Web3Context: React.Context<Web3ContextProps> = createContext<
   Web3ContextProps
 >({} as Web3ContextProps)
 
-export const Web3Provider = ({ children }: { children: ReactNode }) => {
+export const Web3Provider = ({ children, initialAddress }: Web3ProviderProps) => {
   const router = useRouter()
-  const [address, setAddress] = useState('')
+  const [address, setAddress] = useState(initialAddress ?? '')
 
   useEffect(() => {
-    const paramAddress = router.query?.address ?? ''
+    const paramAddress = router.query?.address ?? address
     setAddress(paramAddress.toString())
   }, [router])
 

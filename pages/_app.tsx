@@ -5,7 +5,7 @@ import { Layout, Typography } from 'antd'
 import { Footer } from '../components/footer'
 import { Content } from '../components/content'
 import React from 'react'
-import { NextRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { NextComponentType } from 'next'
 import {
   AppContextType,
@@ -31,7 +31,12 @@ type AppProps = {
   pageProps: any
 }
 
+const headlessPaths = ['/burned-cards']
+
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter()
+  const isHeadlessPath = headlessPaths.some(path => path === router.pathname)
+
   return (
     <>
       <Head>
@@ -51,22 +56,28 @@ const App = ({ Component, pageProps }: AppProps) => {
           }}
         ></script>
       </Head>
-      <Layout style={{ minHeight: '100vh', backgroundColor: '#333' }}>
+      {isHeadlessPath ? (
         <ThemeProvider theme={theme}>
-          <>
-            <Header />
-            <Content>
-              <Component {...pageProps} />
-            </Content>
-          </>
-          <Footer>
-            Made by Moonfarm{' '}
-            <StyledText copyable>
-              0x314e5699db4756138107AE7d7EeDDf5708583ff5
-            </StyledText>
-          </Footer>
+          <Component {...pageProps} />
         </ThemeProvider>
-      </Layout>
+      ) : (
+        <Layout style={{ minHeight: '100vh', backgroundColor: '#333' }}>
+          <ThemeProvider theme={theme}>
+            <>
+              <Header />
+              <Content>
+                <Component {...pageProps} />
+              </Content>
+            </>
+            <Footer>
+              Made by Moonfarm{' '}
+              <StyledText copyable>
+                0x314e5699db4756138107AE7d7EeDDf5708583ff5
+              </StyledText>
+            </Footer>
+          </ThemeProvider>
+        </Layout>
+      )}
     </>
   )
 }

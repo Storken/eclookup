@@ -22,6 +22,7 @@ const StyledA = styled.a`
 
 const StyledImage = styled(Image)`
   max-width: 200px;
+  width: auto;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   margin: ${({ theme }) => theme.spacings.md};
 `
