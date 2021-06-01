@@ -31,7 +31,7 @@ const Home = () => {
       <Container>
         <Row>
           <Col xs={{ span: 24, offset: 0 }} xl={{ span: 18, offset: 3 }}>
-            <Title>Accidental Collaboration builder</Title>
+            <Title>Burned Ether Cards</Title>
           </Col>
           <Col xs={{ span: 24, offset: 0 }} xl={{ span: 18, offset: 3 }}>
             <Web3Provider
