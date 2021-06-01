@@ -22,7 +22,7 @@ const ImagePlaceholder = styled.div`
 `
 
 const StyledImg = styled.img<{ zoom: boolean }>`
-  ${({zoom}) => zoom ? 'transform: scale(0.29)' : 'transform: scale(0.21)'};
+  ${({ zoom }) => (zoom ? 'transform: scale(0.29)' : 'transform: scale(0.21)')};
 `
 
 const LayersOutput = () => {
@@ -33,7 +33,11 @@ const LayersOutput = () => {
       <ImagePlaceholder>
         {layerImageURLs.map((url, index) => (
           <StyledLayerOutput key={url}>
-            <StyledImg zoom={layerArtists[index] === 'Vizie'} key={url} src={url} />
+            <StyledImg
+              zoom={layerArtists[index] === 'Vizie'}
+              key={url}
+              src={url}
+            />
           </StyledLayerOutput>
         ))}
       </ImagePlaceholder>

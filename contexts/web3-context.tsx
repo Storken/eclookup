@@ -24,7 +24,10 @@ export const Web3Context: React.Context<Web3ContextProps> = createContext<
   Web3ContextProps
 >({} as Web3ContextProps)
 
-export const Web3Provider = ({ children, initialAddress }: Web3ProviderProps) => {
+export const Web3Provider = ({
+  children,
+  initialAddress
+}: Web3ProviderProps) => {
   const router = useRouter()
   const [address, setAddress] = useState(initialAddress ?? '')
 

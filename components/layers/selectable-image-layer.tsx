@@ -19,8 +19,7 @@ const Container = styled.div`
 const StyledImg = styled.img<{ zoom: boolean }>`
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   flex-shrink: 0;
-  ${({zoom}) => zoom ? 'transform: scale(0.1)' : 'transform: scale(0.071)'};
-  
+  ${({ zoom }) => (zoom ? 'transform: scale(0.1)' : 'transform: scale(0.071)')};
 `
 
 const Background = styled.div`
@@ -90,7 +89,10 @@ const SelectableImageLayer = ({
   return (
     <Container key={layerId + layerIndex} onClick={onClick}>
       <Background>
-        <StyledImg zoom={layerIndex === 0 && getLayerArtist(layerId) === 'Vizie'} src={imageURL} />
+        <StyledImg
+          zoom={layerIndex === 0 && getLayerArtist(layerId) === 'Vizie'}
+          src={imageURL}
+        />
       </Background>
       <Overlay selected={isSelected}>
         <Text>{isSelected ? 'Selected' : 'Select layer'}</Text>

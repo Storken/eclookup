@@ -18,9 +18,7 @@ const StyledLogo = styled.img`
 `
 
 export const Header = () => {
-
-  const ResponsiveMenu = dynamic(
-    () => import('./responsive-menu'), {
+  const ResponsiveMenu = dynamic(() => import('./responsive-menu'), {
     ssr: false
   })
 
