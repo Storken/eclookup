@@ -13,6 +13,17 @@ const ImageFlexContainer = styled.div`
   flex-wrap: wrap;
 `
 
+const StyledCollapse = styled(Collapse)`
+  .ant-collapse-header {
+    display: flex;
+    align-items: center;
+
+    h4 {
+      margin: 0;
+    }
+  }
+`
+
 const { Panel } = Collapse
 const { Title } = Typography
 
@@ -20,7 +31,7 @@ const LayersOverview = () => {
   return (
     <LayersOverviewContainer>
       {Object.keys(commonsPerLayer).map((key, i) => (
-        <Collapse ghost key={'collapse-' + key}>
+        <StyledCollapse ghost key={'collapse-' + key}>
           <Panel header={<Title level={4}>Layer {i + 1}</Title>} key={key}>
             <ImageFlexContainer>
               {artistLayerNames.map((name, index) => {
@@ -48,7 +59,7 @@ const LayersOverview = () => {
                 })}
             </ImageFlexContainer>
           </Panel>
-        </Collapse>
+        </StyledCollapse>
       ))}
     </LayersOverviewContainer>
   )
