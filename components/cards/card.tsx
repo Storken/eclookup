@@ -120,7 +120,7 @@ const CardComponent = () => {
           <CardInfo>
             <p>
               <b>Type: </b>
-              {card.attributes.map(attribute => attribute.value)}
+              {card.attributes[0].value}
             </p>
           </CardInfo>
           {card.artist !== 'various' && (
@@ -148,9 +148,11 @@ const CardComponent = () => {
                 {card.traits
                   .filter(
                     trait =>
-                      !randomTraits?.traits.some(
-                        rTrait => rTrait === trait.name
-                      )
+                      !randomTraits?.traits.some(rTrait => {
+                        let t1 = rTrait.replaceAll(' ', '')
+                        let t2 = trait.name.replaceAll(' ', '')
+                        return t1 === t2
+                      })
                   )
                   .map((trait, index) => (
                     <li key={trait.id + '-' + index}>{trait.name}</li>
